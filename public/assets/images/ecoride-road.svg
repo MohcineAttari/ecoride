@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" role="img" aria-label="Route dans un paysage vert">
+  <rect width="1400" height="800" fill="#b9e7c9"/>
+  <path d="M0 520 C260 430 430 460 680 390 C920 322 1110 270 1400 330 L1400 800 L0 800 Z" fill="#5dae7a"/>
+  <path d="M0 620 C260 560 450 610 710 520 C950 438 1110 420 1400 470 L1400 800 L0 800 Z" fill="#2f8657"/>
+  <path d="M595 800 C650 650 690 540 706 396 C724 540 773 660 845 800 Z" fill="#2e3440"/>
+  <path d="M713 430 C711 505 714 585 720 800" fill="none" stroke="#f8f2dc" stroke-width="9" stroke-dasharray="34 34"/>
+  <circle cx="1130" cy="150" r="64" fill="#f2b84b"/>
+  <path d="M112 360 C170 330 230 330 288 360" fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" opacity=".85"/>
+  <path d="M890 240 C950 210 1010 210 1068 240" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" opacity=".75"/>
+</svg>
