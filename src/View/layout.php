@@ -28,12 +28,12 @@ $navClass = static fn (string $path): string => $currentPath === $path ? 'nav-li
                     <?php if (in_array('ROLE_ADMIN', current_user()['roles'], true)): ?>
                         <a class="<?= e($navClass('/admin')) ?>" href="/admin">Espace admin</a>
                     <?php endif; ?>
-                    <a class="<?= e($navClass('/mon-espace')) ?> nav-link-account" href="/mon-espace"><?= e(current_user()['pseudo']) ?> - <?= e((string) current_user()['credits']) ?> credits</a>
-                    <a class="nav-link nav-link-muted" href="/deconnexion">Deconnexion</a>
+                    <a class="<?= e($navClass('/mon-espace')) ?>" href="/mon-espace"><?= e(current_user()['pseudo']) ?> - <?= e((string) current_user()['credits']) ?> credits</a>
+                    <a class="nav-link" href="/deconnexion">Deconnexion</a>
                 <?php else: ?>
-                    <a class="nav-link nav-link-primary <?= $currentPath === '/connexion' ? 'is-active' : '' ?>" href="/connexion">Connexion</a>
+                    <a class="<?= e($navClass('/connexion')) ?>" href="/connexion">Connexion</a>
                 <?php endif; ?>
-                <a class="<?= e($navClass('/contact')) ?> nav-link-contact" href="/contact">Contact</a>
+                <a class="<?= e($navClass('/contact')) ?>" href="/contact">Contact</a>
             </nav>
         </div>
     </header>

@@ -105,38 +105,8 @@ a {
 }
 
 .nav-link.is-active {
-    box-shadow: inset 0 0 0 1px rgba(0, 169, 157, 0.18);
-}
-
-.nav-link-primary {
-    background: var(--color-primary);
-    color: white;
-    box-shadow: 0 10px 24px rgba(0, 169, 157, 0.22);
-}
-
-.nav-link-primary:hover,
-.nav-link-primary.is-active {
-    background: var(--color-primary-dark);
-    color: white;
-    box-shadow: 0 12px 28px rgba(0, 127, 121, 0.28);
-}
-
-.nav-link-contact {
-    color: var(--color-accent);
-}
-
-.nav-link-account {
-    background: #f6fbfc;
-    color: var(--color-ink);
-}
-
-.nav-link-muted {
-    color: #8a4752;
-}
-
-.nav-link-muted:hover {
-    background: #fff0f2;
-    color: #9f2435;
+    box-shadow: inset 0 0 0 1px rgba(0, 169, 157, 0.22);
+    font-weight: 800;
 }
 
 .hero {
