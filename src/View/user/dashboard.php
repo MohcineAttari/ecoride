@@ -319,7 +319,7 @@
                     <?php endif; ?>
 
                     <div class="mini-list">
-                        <?php foreach ($vehicles as $vehicle): ?>
+                        <?php foreach ($vehicles as $vehicleIndex => $vehicle): ?>
                             <article>
                                 <strong><?= e($vehicle['marque']) ?> <?= e($vehicle['modele']) ?></strong>
                                 <p>
@@ -328,6 +328,48 @@
                                     <?= e($vehicle['energie']) ?> -
                                     <?= e((string) $vehicle['nb_places']) ?> place(s)
                                 </p>
+                                <details class="inline-form">
+                                    <summary>Modifier ce vehicule</summary>
+                                    <form class="form-grid inline-form" action="/mon-espace/vehicule/modifier" method="post">
+                                        <input type="hidden" name="vehicle_index" value="<?= e((string) $vehicleIndex) ?>">
+                                        <?php if (($vehicle['source'] ?? '') === 'sql'): ?>
+                                            <input type="hidden" name="vehicle_id" value="<?= e((string) $vehicle['id']) ?>">
+                                        <?php endif; ?>
+                                        <label>
+                                            Plaque d'immatriculation
+                                            <input type="text" name="immatriculation" value="<?= e($vehicle['immatriculation']) ?>">
+                                        </label>
+                                        <label>
+                                            Date de premiere immatriculation
+                                            <input type="date" name="date_premiere_immatriculation" value="<?= e($vehicle['date_premiere_immatriculation']) ?>">
+                                        </label>
+                                        <label>
+                                            Marque
+                                            <input type="text" name="marque" value="<?= e($vehicle['marque']) ?>">
+                                        </label>
+                                        <label>
+                                            Modele
+                                            <input type="text" name="modele" value="<?= e($vehicle['modele']) ?>">
+                                        </label>
+                                        <label>
+                                            Couleur
+                                            <input type="text" name="couleur" value="<?= e($vehicle['couleur']) ?>">
+                                        </label>
+                                        <label>
+                                            Energie
+                                            <select name="energie">
+                                                <?php foreach (['electrique', 'hybride', 'essence', 'diesel'] as $energy): ?>
+                                                    <option value="<?= e($energy) ?>" <?= $vehicle['energie'] === $energy ? 'selected' : '' ?>><?= e(ucfirst($energy)) ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </label>
+                                        <label>
+                                            Nombre de places disponibles
+                                            <input type="number" name="nb_places" min="1" max="8" value="<?= e((string) $vehicle['nb_places']) ?>">
+                                        </label>
+                                        <button class="button" type="submit">Enregistrer les modifications</button>
+                                    </form>
+                                </details>
                             </article>
                         <?php endforeach; ?>
                     </div>

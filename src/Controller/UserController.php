@@ -219,6 +219,63 @@ final class UserController
         redirect('/mon-espace');
     }
 
+    public function updateVehicle(): void
+    {
+        if (!is_authenticated()) {
+            redirect('/connexion');
+        }
+
+        $required = ['immatriculation', 'date_premiere_immatriculation', 'marque', 'modele', 'couleur', 'nb_places'];
+        foreach ($required as $field) {
+            if (trim((string) ($_POST[$field] ?? '')) === '') {
+                $_SESSION['flash_error'] = 'Veuillez remplir toutes les informations obligatoires du vehicule.';
+                redirect('/mon-espace');
+            }
+        }
+
+        $vehicle = [
+            'id' => (int) ($_POST['vehicle_id'] ?? 0),
+            'session_index' => (int) ($_POST['vehicle_index'] ?? -1),
+            'immatriculation' => strtoupper(trim((string) $_POST['immatriculation'])),
+            'date_premiere_immatriculation' => trim((string) $_POST['date_premiere_immatriculation']),
+            'marque' => trim((string) $_POST['marque']),
+            'modele' => trim((string) $_POST['modele']),
+            'couleur' => trim((string) $_POST['couleur']),
+            'energie' => trim((string) ($_POST['energie'] ?? 'essence')),
+            'nb_places' => max(1, (int) $_POST['nb_places']),
+        ];
+
+        if ($vehicle['id'] > 0) {
+            try {
+                $repository = new VehicleRepository(Database::connection());
+                $updated = $repository->updateVehicle((int) current_user()['id'], (int) $vehicle['id'], $vehicle);
+
+                if (!$updated) {
+                    $_SESSION['flash_error'] = 'Vehicule introuvable ou non modifie.';
+                    redirect('/mon-espace');
+                }
+
+                $_SESSION['flash_success'] = 'Vehicule mis a jour.';
+                redirect('/mon-espace');
+            } catch (Throwable) {
+                // Le prototype garde un mode session si la base locale est indisponible.
+            }
+        }
+
+        if (!isset($_SESSION['vehicles'][$vehicle['session_index']])) {
+            $_SESSION['flash_error'] = 'Vehicule introuvable.';
+            redirect('/mon-espace');
+        }
+
+        $_SESSION['vehicles'][$vehicle['session_index']] = array_merge(
+            $_SESSION['vehicles'][$vehicle['session_index']],
+            $vehicle
+        );
+
+        $_SESSION['flash_success'] = 'Vehicule mis a jour.';
+        redirect('/mon-espace');
+    }
+
     public function storeRide(): void
     {
         if (!is_authenticated()) {

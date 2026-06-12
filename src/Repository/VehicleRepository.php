@@ -96,6 +96,58 @@ final class VehicleRepository
         return $vehicleId;
     }
 
+    public function updateVehicle(int $userId, int $vehicleId, array $vehicle): bool
+    {
+        if (!$this->belongsToUser($userId, $vehicleId)) {
+            return false;
+        }
+
+        $brandId = $this->findOrCreateReference('marque', (string) $vehicle['marque']);
+        $energyId = $this->findOrCreateEnergy((string) $vehicle['energie']);
+
+        $statement = $this->connection->prepare(
+            'UPDATE vehicule
+             SET marque_id = :brand_id,
+                 energie_id = :energy_id,
+                 modele = :modele,
+                 immatriculation = :immatriculation,
+                 couleur = :couleur,
+                 date_premiere_immatriculation = :date_premiere_immatriculation,
+                 nb_places = :nb_places
+             WHERE id = :vehicle_id
+               AND utilisateur_id = :user_id'
+        );
+        $statement->execute([
+            'brand_id' => $brandId,
+            'energy_id' => $energyId,
+            'modele' => $vehicle['modele'],
+            'immatriculation' => $vehicle['immatriculation'],
+            'couleur' => $vehicle['couleur'],
+            'date_premiere_immatriculation' => $vehicle['date_premiere_immatriculation'],
+            'nb_places' => $vehicle['nb_places'],
+            'vehicle_id' => $vehicleId,
+            'user_id' => $userId,
+        ]);
+
+        return true;
+    }
+
+    private function belongsToUser(int $userId, int $vehicleId): bool
+    {
+        $statement = $this->connection->prepare(
+            'SELECT COUNT(*)
+             FROM vehicule
+             WHERE id = :vehicle_id
+               AND utilisateur_id = :user_id'
+        );
+        $statement->execute([
+            'vehicle_id' => $vehicleId,
+            'user_id' => $userId,
+        ]);
+
+        return (int) $statement->fetchColumn() > 0;
+    }
+
     private function findOrCreateReference(string $table, string $label): int
     {
         $statement = $this->connection->prepare('SELECT id FROM ' . $table . ' WHERE libelle = :label LIMIT 1');

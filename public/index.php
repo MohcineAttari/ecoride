@@ -47,6 +47,7 @@ $router->get('/deconnexion', [AuthController::class, 'logout']);
 $router->get('/mon-espace', [UserController::class, 'dashboard']);
 $router->post('/mon-espace/profil', [UserController::class, 'updateProfile']);
 $router->post('/mon-espace/vehicule', [UserController::class, 'storeVehicle']);
+$router->post('/mon-espace/vehicule/modifier', [UserController::class, 'updateVehicle']);
 $router->post('/mon-espace/voyage', [UserController::class, 'storeRide']);
 $router->post('/mon-espace/reservation/annuler', [UserController::class, 'cancelReservation']);
 $router->post('/mon-espace/voyage/annuler', [UserController::class, 'cancelDriverRide']);
