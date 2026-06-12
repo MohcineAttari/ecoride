@@ -25,6 +25,7 @@ final class UserRepository
         }
 
         $user['roles'] = $this->rolesForUser((int) $user['id']);
+        $user['profile'] = $this->profileFromRoles($user['roles']);
 
         return $user;
     }
@@ -45,6 +46,42 @@ final class UserRepository
         $this->attachRole($userId, 'ROLE_PASSAGER');
 
         return $userId;
+    }
+
+    public function updateProfileRoles(int $userId, string $profile): array
+    {
+        $this->connection->beginTransaction();
+
+        try {
+            $this->attachRole($userId, 'ROLE_USER');
+
+            $delete = $this->connection->prepare(
+                'DELETE ur
+                 FROM utilisateur_role ur
+                 INNER JOIN role r ON r.id = ur.role_id
+                 WHERE ur.utilisateur_id = :user_id
+                   AND r.code IN ("ROLE_PASSAGER", "ROLE_CHAUFFEUR")'
+            );
+            $delete->execute(['user_id' => $userId]);
+
+            if ($profile === 'passager' || $profile === 'passager_chauffeur') {
+                $this->attachRole($userId, 'ROLE_PASSAGER');
+            }
+
+            if ($profile === 'chauffeur' || $profile === 'passager_chauffeur') {
+                $this->attachRole($userId, 'ROLE_CHAUFFEUR');
+            }
+
+            $this->connection->commit();
+
+            return $this->rolesForUser($userId);
+        } catch (\Throwable $exception) {
+            if ($this->connection->inTransaction()) {
+                $this->connection->rollBack();
+            }
+
+            throw $exception;
+        }
     }
 
     public function attachRole(int $userId, string $roleCode): void
@@ -70,5 +107,21 @@ final class UserRepository
         $statement->execute(['user_id' => $userId]);
 
         return array_column($statement->fetchAll(), 'code');
+    }
+
+    private function profileFromRoles(array $roles): string
+    {
+        $isPassenger = in_array('ROLE_PASSAGER', $roles, true);
+        $isDriver = in_array('ROLE_CHAUFFEUR', $roles, true);
+
+        if ($isPassenger && $isDriver) {
+            return 'passager_chauffeur';
+        }
+
+        if ($isDriver) {
+            return 'chauffeur';
+        }
+
+        return 'passager';
     }
 }

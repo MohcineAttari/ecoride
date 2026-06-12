@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Core\Database;
 use App\Repository\RideRepository;
+use App\Repository\UserRepository;
 use App\Repository\VehicleRepository;
 use Throwable;
 
@@ -141,14 +142,20 @@ final class UserController
         }
 
         $_SESSION['user']['profile'] = $profile;
-        $_SESSION['user']['roles'] = ['ROLE_USER'];
 
-        if ($profile === 'passager' || $profile === 'passager_chauffeur') {
-            $_SESSION['user']['roles'][] = 'ROLE_PASSAGER';
-        }
+        try {
+            $repository = new UserRepository(Database::connection());
+            $_SESSION['user']['roles'] = $repository->updateProfileRoles((int) current_user()['id'], $profile);
+        } catch (Throwable) {
+            $_SESSION['user']['roles'] = ['ROLE_USER'];
 
-        if ($profile === 'chauffeur' || $profile === 'passager_chauffeur') {
-            $_SESSION['user']['roles'][] = 'ROLE_CHAUFFEUR';
+            if ($profile === 'passager' || $profile === 'passager_chauffeur') {
+                $_SESSION['user']['roles'][] = 'ROLE_PASSAGER';
+            }
+
+            if ($profile === 'chauffeur' || $profile === 'passager_chauffeur') {
+                $_SESSION['user']['roles'][] = 'ROLE_CHAUFFEUR';
+            }
         }
 
         $_SESSION['flash_success'] = 'Votre profil a ete mis a jour.';
