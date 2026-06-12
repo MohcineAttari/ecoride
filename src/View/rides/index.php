@@ -56,12 +56,12 @@
                                 <h2><?= e($ride['departure_city']) ?> vers <?= e($ride['arrival_city']) ?></h2>
                                 <p>Chauffeur : <?= e($ride['driver_pseudo']) ?>, note <?= e((string) $ride['driver_rating']) ?>/5</p>
                             </div>
+                            <strong class="ride-price"><?= e((string) $ride['price']) ?> credits</strong>
                         </div>
 
                         <div class="ride-meta">
                             <span><?= e($ride['departure_at']) ?> - <?= e($ride['arrival_at']) ?></span>
                             <span><?= e((string) $ride['available_seats']) ?> place(s)</span>
-                            <span><?= e((string) $ride['price']) ?> credits</span>
                             <span><?= e($ride['vehicle_brand']) ?> <?= e($ride['vehicle_model']) ?></span>
                         </div>
 

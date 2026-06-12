@@ -1,8 +1,14 @@
 <section class="hero">
     <div class="container hero-grid">
         <div>
+            <p class="hero-kicker">Covoiturage responsable en France</p>
             <h1>EcoRide</h1>
             <p>La plateforme de covoiturage pensee pour reduire l'impact des trajets en voiture et rendre les deplacements plus economiques.</p>
+            <div class="hero-stats" aria-label="Avantages EcoRide">
+                <span><strong>20</strong> credits offerts</span>
+                <span><strong>2</strong> credits plateforme</span>
+                <span><strong>100%</strong> trajets suivis</span>
+            </div>
             <img class="hero-image" src="/assets/images/ecoride-road.svg" alt="Illustration d'un trajet de covoiturage EcoRide">
         </div>
 
