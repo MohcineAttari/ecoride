@@ -1,7 +1,13 @@
-<section class="section">
+<section class="page-hero page-hero-compact">
     <div class="container">
-        <h1 class="section-title">Covoiturages</h1>
+        <p class="hero-kicker">Trouver un trajet</p>
+        <h1>Covoiturages</h1>
+        <p>Comparez les trajets disponibles, filtrez selon vos criteres et choisissez un conducteur fiable.</p>
+    </div>
+</section>
 
+<section class="section section-raised">
+    <div class="container">
         <div class="rides-layout">
             <aside class="filters">
                 <h2>Filtres</h2>

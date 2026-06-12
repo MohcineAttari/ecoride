@@ -1,7 +1,13 @@
-<section class="section">
+<section class="page-hero page-hero-compact">
     <div class="container">
-        <h1 class="section-title">Contact</h1>
+        <p class="hero-kicker">Besoin d'aide ?</p>
+        <h1>Contact</h1>
+        <p>Une question sur votre compte, un trajet ou un incident ? L'equipe EcoRide vous accompagne.</p>
+    </div>
+</section>
 
+<section class="section section-raised">
+    <div class="container">
         <?php if (!empty($success)): ?>
             <p class="alert-success"><?= e($success) ?></p>
         <?php endif; ?>
