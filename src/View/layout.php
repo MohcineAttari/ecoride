@@ -29,7 +29,7 @@
                 <?php else: ?>
                     <a href="/connexion">Connexion</a>
                 <?php endif; ?>
-                <a href="#contact">Contact</a>
+                <a href="/contact">Contact</a>
             </nav>
         </div>
     </header>

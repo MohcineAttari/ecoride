@@ -58,6 +58,7 @@ Pour demarrer la base MariaDB locale :
 
 ```txt
 http://localhost:8000
+http://localhost:8000/contact
 http://localhost:8000/covoiturages
 http://localhost:8000/covoiturages?depart=Lyon&arrivee=Marseille&date=2026-06-05
 http://localhost:8000/covoiturages/detail?id=1

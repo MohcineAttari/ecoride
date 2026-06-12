@@ -32,6 +32,8 @@ use App\Core\Router;
 $router = new Router();
 
 $router->get('/', [HomeController::class, 'index']);
+$router->get('/contact', [HomeController::class, 'contact']);
+$router->post('/contact', [HomeController::class, 'storeContact']);
 $router->get('/mentions-legales', [HomeController::class, 'legal']);
 $router->get('/covoiturages', [RideController::class, 'index']);
 $router->get('/covoiturages/detail', [RideController::class, 'show']);
