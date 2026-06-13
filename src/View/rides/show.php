@@ -1,4 +1,12 @@
-<section class="section">
+<section class="page-hero page-hero-compact">
+    <div class="container">
+        <p class="hero-kicker"><?= $ride['is_ecological'] ? 'Voyage ecologique' : 'Voyage classique' ?></p>
+        <h1><?= e($ride['departure_city']) ?> vers <?= e($ride['arrival_city']) ?></h1>
+        <p><?= e($ride['departure_place']) ?> vers <?= e($ride['arrival_place']) ?></p>
+    </div>
+</section>
+
+<section class="section section-raised">
     <div class="container">
         <a class="back-link" href="/covoiturages">Retour aux covoiturages</a>
 
@@ -17,10 +25,8 @@
                 <span class="badge <?= $ride['is_ecological'] ? '' : 'badge-muted' ?>">
                     <?= $ride['is_ecological'] ? 'Voyage ecologique' : 'Voyage classique' ?>
                 </span>
-                <h1 class="section-title"><?= e($ride['departure_city']) ?> vers <?= e($ride['arrival_city']) ?></h1>
-                <p class="empty-state">
-                    <?= e($ride['departure_place']) ?> vers <?= e($ride['arrival_place']) ?>
-                </p>
+                <h2 class="section-title"><?= e((string) $ride['price']) ?> credits par passager</h2>
+                <p class="empty-state"><?= e((string) $ride['available_seats']) ?> place(s) encore disponible(s).</p>
             </div>
             <?php if (is_authenticated()): ?>
                 <a class="button" href="/covoiturages/participer?id=<?= e((string) $ride['id']) ?>">Participer</a>

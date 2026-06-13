@@ -1,7 +1,13 @@
-<section class="section">
-    <div class="container legal-content">
-        <h1 class="section-title">Mentions legales</h1>
+<section class="page-hero page-hero-compact">
+    <div class="container">
+        <p class="hero-kicker">Informations legales</p>
+        <h1>Mentions legales</h1>
+        <p>Les informations essentielles sur le projet, les donnees et l'environnement local EcoRide.</p>
+    </div>
+</section>
 
+<section class="section section-raised">
+    <div class="container legal-content">
         <article class="detail-card">
             <h2>Editeur du site</h2>
             <p>
