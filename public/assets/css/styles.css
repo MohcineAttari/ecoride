@@ -631,6 +631,18 @@ textarea {
     margin-top: 28px;
 }
 
+.reviews-section > h2 {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    margin-bottom: 18px;
+    border-radius: 999px;
+    padding: 7px 13px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-card);
+}
+
 .review-list {
     display: grid;
     gap: 14px;
@@ -655,8 +667,16 @@ textarea {
 .mini-list article {
     border: 1px solid var(--color-border);
     border-radius: 8px;
-    padding: 12px;
-    background: #f8fbfc;
+    padding: 16px;
+    background: var(--color-surface);
+    box-shadow: 0 10px 24px rgba(20, 33, 61, 0.06);
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+.mini-list article:hover {
+    border-color: rgba(0, 169, 157, 0.38);
+    box-shadow: 0 14px 32px rgba(20, 33, 61, 0.1);
+    transform: translateY(-1px);
 }
 
 .mini-list p {
@@ -700,8 +720,9 @@ textarea {
 
 .stat-number {
     margin: 0;
-    color: var(--color-primary-dark);
-    font-size: 3rem;
+    color: var(--color-primary);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1;
     font-weight: 700;
 }
 
@@ -710,6 +731,7 @@ textarea {
     min-height: 220px;
     border: 1px solid var(--color-border);
     border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff, #f7fbfc);
 }
 
 .site-footer {

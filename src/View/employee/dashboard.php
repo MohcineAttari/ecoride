@@ -1,7 +1,13 @@
-<section class="section">
+<section class="page-hero page-hero-compact">
     <div class="container">
-        <h1 class="section-title">Espace employe</h1>
+        <p class="hero-kicker">Moderation</p>
+        <h1>Espace employe</h1>
+        <p>Controlez les avis en attente et suivez les trajets signales par les passagers.</p>
+    </div>
+</section>
 
+<section class="section section-raised">
+    <div class="container">
         <?php if (!empty($success)): ?>
             <p class="alert-success"><?= e($success) ?></p>
         <?php endif; ?>

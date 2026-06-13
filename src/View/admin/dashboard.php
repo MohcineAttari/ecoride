@@ -1,7 +1,13 @@
-<section class="section">
+<section class="page-hero page-hero-compact">
     <div class="container">
-        <h1 class="section-title">Espace administrateur</h1>
+        <p class="hero-kicker">Pilotage EcoRide</p>
+        <h1>Espace administrateur</h1>
+        <p>Suivez les credits plateforme, les comptes utilisateurs et les statistiques de covoiturage.</p>
+    </div>
+</section>
 
+<section class="section section-raised">
+    <div class="container">
         <?php if (!empty($success)): ?>
             <p class="alert-success"><?= e($success) ?></p>
         <?php endif; ?>
