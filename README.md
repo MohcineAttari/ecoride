@@ -119,6 +119,14 @@ La documentation de preparation SQL se trouve dans :
 docs/installation-base-de-donnees.md
 ```
 
+## Tests
+
+Le plan de tests fonctionnels et securite se trouve dans :
+
+```txt
+docs/plan-tests.md
+```
+
 ## Comptes de demonstration
 
 Compte utilisateur :
