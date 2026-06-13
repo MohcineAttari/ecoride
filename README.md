@@ -127,6 +127,14 @@ Le plan de tests fonctionnels et securite se trouve dans :
 docs/plan-tests.md
 ```
 
+## Manuel utilisateur
+
+Le manuel utilisateur se trouve dans :
+
+```txt
+docs/manuel-utilisateur.md
+```
+
 ## Comptes de demonstration
 
 Compte utilisateur :
