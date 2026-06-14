@@ -135,6 +135,14 @@ Le manuel utilisateur se trouve dans :
 docs/manuel-utilisateur.md
 ```
 
+## Deploiement et rendu
+
+La checklist de deploiement et preparation du rendu se trouve dans :
+
+```txt
+docs/deploiement.md
+```
+
 ## Comptes de demonstration
 
 Compte utilisateur :
